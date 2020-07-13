@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -25,9 +26,23 @@ module.exports = {
         use: ['babel-loader', 'eslint-loader'],
       },
       {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: MiniExtractPlugin.loader,
+            options: {
+              hmr: process.env.NODE_ENV === 'development',
+              reloadAll: true,
+            },
+          },
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
         test: /\.(jpg|png|gif)$/,
         use: {
-          loader: 'babel-loader',
+          loader: 'file-loader',
           options: {
             name: '[name].[ext]',
             limit: 10240,
@@ -39,10 +54,11 @@ module.exports = {
   resolve: {
     extensions: ['.jsx', '.js', '.json'],
     alias: {
-      pages: path.resolve(__dirname, 'src/pages'),
+      utils: path.resolve(__dirname, 'src/utils'),
     },
   },
   plugins: [
+    new MiniExtractPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),

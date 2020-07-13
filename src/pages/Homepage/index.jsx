@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import './style.scss';
 
-class Homepage extends Component {
+class Homepage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,8 +12,7 @@ class Homepage extends Component {
   render() {
     const { name } = this.state;
     return (
-      <div>
-        <span>Homepage</span>
+      <div className="gallery">
         <div>{name}</div>
       </div>
     );
