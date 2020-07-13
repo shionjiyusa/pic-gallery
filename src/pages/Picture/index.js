@@ -3,7 +3,8 @@ import React from 'react';
 function Picture() {
   return (
     <div>
-      Picture<span>list</span>
+      Picture
+      <span>list</span>
     </div>
   );
 }

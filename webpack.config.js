@@ -1,18 +1,18 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   entry: {
-    main: "./src/index.js",
+    main: './src/index.js',
   },
-  devtool: "cheap-module-eval-source-map",
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
-    contentBase: "./dist",
+    contentBase: './dist',
     open: true,
     port: 3000,
-    overlay: true,
+    // overlay: true, // 浏览器直接显示命令行的错误
     hot: true,
     historyApiFallback: true,
     // hotOnly: true,
@@ -20,16 +20,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader", "eslint-loader"],
+        use: ['babel-loader', 'eslint-loader'],
       },
       {
         test: /\.(jpg|png|gif)$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            name: "[name].[ext]",
+            name: '[name].[ext]',
             limit: 10240,
           },
         },
@@ -38,12 +38,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: 'src/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
   },
 };
