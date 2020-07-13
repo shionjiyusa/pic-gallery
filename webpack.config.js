@@ -12,7 +12,9 @@ module.exports = {
     contentBase: "./dist",
     open: true,
     port: 3000,
+    overlay: true,
     hot: true,
+    historyApiFallback: true,
     // hotOnly: true,
   },
   module: {
@@ -20,7 +22,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader",
+        use: ["babel-loader", "eslint-loader"],
       },
       {
         test: /\.(jpg|png|gif)$/,
