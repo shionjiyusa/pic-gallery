@@ -1,5 +1,5 @@
-import Homepage from './pages/Homepage';
-import Picture from './pages/Picture';
+import Homepage from 'pages/Homepage';
+import Picture from 'pages/Picture';
 
 const router = [
   {

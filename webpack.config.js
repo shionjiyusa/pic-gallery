@@ -5,7 +5,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/index.js',
+    main: './src/index.jsx',
   },
   devtool: 'cheap-module-eval-source-map',
   devServer: {
@@ -35,6 +35,12 @@ module.exports = {
         },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.jsx', '.js', '.json'],
+    alias: {
+      pages: path.resolve(__dirname, 'src/pages'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({

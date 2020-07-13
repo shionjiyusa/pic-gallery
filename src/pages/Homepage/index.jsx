@@ -9,10 +9,11 @@ class Homepage extends Component {
   }
 
   render() {
+    const { name } = this.state;
     return (
       <div>
         <span>Homepage</span>
-        <div>{this.state.name}</div>
+        <div>{name}</div>
       </div>
     );
   }
