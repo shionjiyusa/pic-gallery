@@ -1,2 +1,2 @@
-const baseUrl = 'http://localhost:3001';
+const baseUrl = 'https://img.kanata.moe';
 export default baseUrl;

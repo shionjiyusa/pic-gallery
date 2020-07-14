@@ -1,0 +1,20 @@
+.carousel {
+  max-height: 100vh;
+  overflow: hidden;
+
+  &:before {
+    // TODO: 添加箭头
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  &:after {
+    // 添加箭头
+    width: 10%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  img {
+    width: 100%;
+  }
+}

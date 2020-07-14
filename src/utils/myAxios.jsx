@@ -12,4 +12,11 @@ const myAxios = axios.create({
   },
 });
 
+myAxios.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    console.log(err);
+  }
+);
+
 export default myAxios;
