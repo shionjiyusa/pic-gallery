@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import router from './router';
+
+// import NotFound from './components/NotFound';
 import './app.scss';
 
 const App = () => (
@@ -9,6 +11,9 @@ const App = () => (
       {router.map((each) => (
         <Route path={each.path} component={each.component} exact key={each.path} />
       ))}
+      {/* <Route path="*">
+        <NotFound />
+      </Route> */}
     </Switch>
   </BrowserRouter>
 );

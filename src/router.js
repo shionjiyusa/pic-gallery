@@ -7,7 +7,7 @@ const router = [
     component: Homepage,
   },
   {
-    path: '/picture',
+    path: '/picture/:pid',
     component: Picture,
   },
 ];
