@@ -56,7 +56,6 @@
     "react-aplayer": "^1.0.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0",
-    "styled-components": "^5.1.1"
+    "react-router-dom": "^5.2.0"
   }
 }
