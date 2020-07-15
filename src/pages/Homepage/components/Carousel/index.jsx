@@ -21,11 +21,13 @@ class Carousel extends PureComponent {
     const { pictures } = this.state;
     return (
       <div className="carousel">
+        <div className="arrow-left" />
         {pictures.map((pic) => (
           <Link to={`/picture/${pic.picture_id}`} key={pic.picture_id}>
             <img src={pic.picture_dir} alt={pic.picture_id} />
           </Link>
         ))}
+        <div className="arrow-right" />
       </div>
     );
   }

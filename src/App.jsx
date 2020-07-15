@@ -1,12 +1,12 @@
 import React from 'react';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, HashRouter, Route } from 'react-router-dom';
 import router from './router';
 
 // import NotFound from './components/NotFound';
 import './app.scss';
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Switch>
       {router.map((each) => (
         <Route path={each.path} component={each.component} exact key={each.path} />
@@ -15,7 +15,7 @@ const App = () => (
         <NotFound />
       </Route> */}
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default App;
