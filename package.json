@@ -1,7 +1,7 @@
 {
-  "name": "jianshu",
+  "name": "pic-gallery",
   "version": "1.0.0",
-  "description": "React 前端仿简书项目",
+  "description": "React 图片评分项目",
   "private": true,
   "main": "index.js",
   "scripts": {
@@ -56,6 +56,7 @@
     "react-aplayer": "^1.0.0",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
+    "react-flickity-component": "^3.5.0",
     "react-router-dom": "^5.2.0"
   }
 }

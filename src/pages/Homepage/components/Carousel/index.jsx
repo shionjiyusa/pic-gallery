@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import Flickity from 'react-flickity-component';
 import getCarousel from './service';
 import './style.scss';
 
@@ -19,15 +20,16 @@ class Carousel extends PureComponent {
 
   render() {
     const { pictures } = this.state;
+    const flickityOptions = { initialIndex: 2 };
     return (
       <div className="carousel">
-        <div className="arrow-left" />
-        {pictures.map((pic) => (
-          <Link to={`/picture/${pic.picture_id}`} key={pic.picture_id}>
-            <img src={pic.picture_dir} alt={pic.picture_id} />
-          </Link>
-        ))}
-        <div className="arrow-right" />
+        <Flickity options={flickityOptions}>
+          {pictures.map((pic) => (
+            <Link to={`/picture/${pic.picture_id}`} key={pic.picture_id}>
+              <img src={pic.picture_dir} alt={pic.picture_id} />
+            </Link>
+          ))}
+        </Flickity>
       </div>
     );
   }

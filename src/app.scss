@@ -1,10 +1,41 @@
 // 主题颜色
-$theme-color: #c69;
-$theme-color-bg: rgb(250, 250, 250);
-$logo-img: url('./images/logo.png');
+$theme-color: #be121b;
+$theme-color-bg: rgba(0, 0, 0, 0.02);
+$theme-color-deep: rgba(0, 0, 0, 0.05);
 
 // 样式重置
 body {
   margin: 0;
   padding: 0;
 }
+
+// 自定义样式
+@mixin button($color) {
+  padding: 5px 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: $color;
+  background-color: $theme-color-deep;
+  border: 1px solid $theme-color-bg;
+  border-radius: 3px;
+  font-size: 16px;
+
+  &:hover {
+    border: 1px solid $color;
+    cursor: pointer;
+  }
+  &:focus {
+    background-color: $theme-color-deep;
+    outline: none;
+  }
+}
+
+.button-main {
+  @include button(#69c);
+}
+
+.button-sub {
+  @include button(#c69);
+}
+
+// TODO: 解决 css 重复生成的问题
