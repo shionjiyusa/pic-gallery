@@ -1,12 +1,16 @@
 // 主题颜色
-$theme-color: #be121b;
+$theme-color: #332a2c;
 $theme-color-bg: rgba(0, 0, 0, 0.02);
 $theme-color-deep: rgba(0, 0, 0, 0.05);
+$theme-color-text: #332a2c;
+
+$window-width: 1024px;
 
 // 样式重置
 body {
   margin: 0;
   padding: 0;
+  color: $theme-color-text;
 }
 
 // 自定义样式

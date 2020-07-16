@@ -1,8 +1,9 @@
-@import '../../app.scss';
+@import '../../_app.scss';
 
 .homepage {
   margin: 0px auto 50px;
-  max-width: 1024px;
+  padding: 5px;
+  max-width: $window-width;
   min-height: 50vh;
   background-color: $theme-color-bg;
 }

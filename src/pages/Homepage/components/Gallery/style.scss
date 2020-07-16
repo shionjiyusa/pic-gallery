@@ -1,0 +1,17 @@
+.gallery {
+  ul {
+    display: flex;
+    list-style: none;
+  }
+  li {
+    width: 20%;
+    max-width: 150px;
+    margin: 5px;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

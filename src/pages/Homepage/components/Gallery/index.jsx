@@ -1,35 +1,35 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import getPictures from './service';
 import './style.scss';
 
-class Homepage extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pictures: [],
-    };
-  }
+function Homepage() {
+  const [pictures, setPictures] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     getPictures().then((res) => {
-      this.setState({ pictures: res.data.data.thumbs });
+      setPictures(res.data.data.thumbs);
     });
-  }
+    // return () => {
+    //   // cleanup
+    // };
+  }, []);
 
-  render() {
-    const { pictures } = this.state;
-    return (
-      <div className="gallery">
+  return (
+    <div className="gallery">
+      <ul>
         {pictures.map((picture) => (
-          <Link to={`/picture/${picture.picture_id}`} key={picture.picture_id}>
-            <div className="card">{picture.picture_id}</div>
-          </Link>
+          <li>
+            <Link to={`/picture/${picture.picture_id}`} key={picture.picture_id}>
+              <img src={picture.picture_dir} alt={picture.picture_id} />
+              <div className="card">{picture.picture_id}</div>
+            </Link>
+          </li>
         ))}
-      </div>
-    );
-  }
+      </ul>
+    </div>
+  );
 }
 
 export default Homepage;
