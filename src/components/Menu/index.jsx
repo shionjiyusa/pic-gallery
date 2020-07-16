@@ -6,7 +6,7 @@ function Menu() {
     <header>
       <div className="header-wrapper">
         <div className="web-title">星の音</div>
-        <button type="button" className="button-sub">
+        <button type="button" id="bu" className="button-sub">
           注册
         </button>
         <button type="button" className="button-main">

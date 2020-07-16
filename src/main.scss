@@ -1,0 +1,18 @@
+@import './public';
+
+// 样式重置
+body {
+  margin: 0;
+  padding: 0;
+  color: $theme-color-text;
+}
+
+.button-main {
+  @include button(#69c);
+}
+
+.button-sub {
+  @include button(#c69);
+}
+
+// 解决 css 重复生成的问题 (finished)

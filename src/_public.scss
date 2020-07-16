@@ -6,13 +6,6 @@ $theme-color-text: #332a2c;
 
 $window-width: 1024px;
 
-// 样式重置
-body {
-  margin: 0;
-  padding: 0;
-  color: $theme-color-text;
-}
-
 // 自定义样式
 @mixin button($color) {
   padding: 5px 15px;
@@ -33,13 +26,3 @@ body {
     outline: none;
   }
 }
-
-.button-main {
-  @include button(#69c);
-}
-
-.button-sub {
-  @include button(#c69);
-}
-
-// TODO: 解决 css 重复生成的问题

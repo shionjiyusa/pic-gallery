@@ -3,7 +3,7 @@ import { Switch, HashRouter, Route } from 'react-router-dom';
 import router from './router';
 
 // import NotFound from './components/NotFound';
-import './_app.scss';
+import './main.scss';
 
 const App = () => (
   <HashRouter>
