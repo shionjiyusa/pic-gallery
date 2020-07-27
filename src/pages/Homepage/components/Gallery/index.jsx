@@ -11,16 +11,13 @@ function Homepage() {
     getPictures().then((res) => {
       setPictures(res.data.data.thumbs);
     });
-    // return () => {
-    //   // cleanup
-    // };
-  }, []);
+  });
 
   return (
     <div className="gallery">
       <ul>
         {pictures.map((picture) => (
-          <li>
+          <li key={picture.picture_id}>
             <Link to={`/picture/${picture.picture_id}`} key={picture.picture_id}>
               <img src={picture.picture_dir} alt={picture.picture_id} />
               <div className="card">{picture.picture_id}</div>
