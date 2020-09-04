@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'antd';
 import './style.scss';
 
 function Menu() {
@@ -6,12 +7,8 @@ function Menu() {
     <header>
       <div className="header-wrapper">
         <div className="web-title">星の音</div>
-        <button type="button" id="bu" className="button-sub">
-          注册
-        </button>
-        <button type="button" className="button-main">
-          登录
-        </button>
+        <Button type="primary">注册</Button>
+        <Button type="primary">登录</Button>
       </div>
     </header>
   );

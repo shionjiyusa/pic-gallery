@@ -10,7 +10,7 @@
 
 1. 后端技术栈
 
-> Koa2 + Node.js + PM2 + MariaDB + Nginx
+> Koa2 + Node.js + PM2 + mongoDB + Nginx + swagger
 
 后端项目有待继续优化
 

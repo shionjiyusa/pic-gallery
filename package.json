@@ -51,6 +51,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "antd": "^4.5.4",
     "axios": "^0.19.2",
     "react": "^16.13.1",
     "react-aplayer": "^1.0.0",

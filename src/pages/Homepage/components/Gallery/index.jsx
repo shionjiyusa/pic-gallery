@@ -9,21 +9,24 @@ function Homepage() {
 
   useEffect(() => {
     getPictures().then((res) => {
-      setPictures(res.data.data.thumbs);
+      setPictures(res.data);
     });
-  });
+  }, []);
 
   return (
     <div className="gallery">
       <ul>
-        {pictures.map((picture) => (
-          <li key={picture.picture_id}>
-            <Link to={`/picture/${picture.picture_id}`} key={picture.picture_id}>
-              <img src={picture.picture_dir} alt={picture.picture_id} />
-              <div className="card">{picture.picture_id}</div>
-            </Link>
-          </li>
-        ))}
+        {pictures.map((picture) => {
+          const { _id: id, pic_dir: dir } = picture;
+          return (
+            <li key={id}>
+              <Link to={`/picture/${id}`} key={id}>
+                <img src={dir} alt={id} />
+                <div className="card">{id}</div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
