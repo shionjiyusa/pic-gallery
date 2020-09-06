@@ -6,8 +6,8 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handle = () => {
-    if (register(email, password)) {
+  const handle = async () => {
+    if (await register(email, password)) {
       message.success('注册成功，请等待管理员审核');
     } else {
       message.error('注册失败');
@@ -21,6 +21,8 @@ function Register() {
         onChange={(e) => {
           setEmail(e.target.value);
         }}
+        type="email"
+        placeholder="仅支持邮箱注册"
       />
       密码：
       <Input.Password

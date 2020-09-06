@@ -6,16 +6,16 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginHandle = () => {
-    if (!localStorage.getItem('token')) {
-      if (!login(email, password)) {
-        message.error('登录失败，用户名或密码错误');
-        return null;
-      }
+  const loginHandle = async () => {
+    if (localStorage.getItem('token')) {
+      message.error('请勿重复登录');
+      return null;
+    }
+    if (await login(email, password)) {
       message.info('登录成功，即将跳转至首页');
       return null;
     }
-    message.error('请勿重复登录');
+    message.error('登录失败，用户名或密码错误');
     return null;
   };
 
@@ -26,6 +26,8 @@ function Login() {
         onChange={(e) => {
           setEmail(e.target.value);
         }}
+        type="email"
+        placeholder="仅支持邮箱登录"
       />
       密码：
       <Input.Password
