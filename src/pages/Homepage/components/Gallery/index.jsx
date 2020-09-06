@@ -9,7 +9,7 @@ function Homepage() {
 
   useEffect(() => {
     getPictures().then((res) => {
-      setPictures(res.data);
+      setPictures(res.data.rows);
     });
   }, []);
 
@@ -17,11 +17,11 @@ function Homepage() {
     <div className="gallery">
       <ul>
         {pictures.map((picture) => {
-          const { _id: id, pic_dir: dir } = picture;
+          const { picture_id: id, thumb_url: url } = picture;
           return (
             <li key={id}>
               <Link to={`/picture/${id}`} key={id}>
-                <img src={dir} alt={id} />
+                <img src={url} alt={id} />
                 <div className="card">{id}</div>
               </Link>
             </li>

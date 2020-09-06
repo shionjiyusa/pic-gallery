@@ -5,20 +5,20 @@ const musicList = [
   {
     name: 'ポケットをふくらませて',
     artist: 'rionos',
-    url: 'https://kanata.moe/musics/music1.mp3',
-    cover: 'https://kanata.moe/musics/cover1.jpg',
+    url: 'http://sena.moe/musics/music1.mp3',
+    cover: 'http://sena.moe/musics/cover1.jpg',
   },
   {
     name: 'ナグルファルの船上にて',
     artist: 'monet',
-    url: 'https://kanata.moe/musics/music2.mp3',
-    cover: 'https://kanata.moe/musics/cover2.jpg',
+    url: 'http://sena.moe/musics/music2.mp3',
+    cover: 'http://sena.moe/musics/cover2.jpg',
   },
   {
     name: '夜の向日葵',
     artist: '松本文紀',
-    url: 'https://kanata.moe/musics/music3.mp3',
-    cover: 'https://kanata.moe/musics/cover3.png',
+    url: 'http://sena.moe/musics/music3.mp3',
+    cover: 'http://sena.moe/musics/cover3.png',
   },
 ];
 
