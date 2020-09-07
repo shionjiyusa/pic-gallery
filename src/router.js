@@ -1,7 +1,12 @@
-import Homepage from './pages/Homepage';
-import Picture from './pages/Picture';
-import Login from './components/Menu/Login';
-import Register from './components/Menu/Register';
+import { lazy } from 'react';
+
+// 页面使用懒加载
+const Homepage = lazy(() => import(/* webpackChunkName: "homepage" */ './pages/Homepage'));
+const Picture = lazy(() => import(/* webpackChunkName: "picture" */ './pages/Picture'));
+const Login = lazy(() => import(/* webpackChunkName: "login" */ './components/Menu/Login'));
+const Register = lazy(() =>
+  import(/* webpackChunkName: "register" */ './components/Menu/Register')
+);
 
 const router = [
   {

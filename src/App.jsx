@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Switch, HashRouter, Route } from 'react-router-dom';
 import router from './router';
 
-// import NotFound from './components/NotFound';
 import './main.scss';
 
 const App = () => (
   <HashRouter>
     <Switch>
-      {router.map((each) => (
-        <Route path={each.path} component={each.component} exact key={each.path} />
-      ))}
-      {/* <Route path="*">
-        <NotFound />
-      </Route> */}
+      <Suspense fallback={<div>loading</div>}>
+        {router.map((each) => (
+          <Route path={each.path} component={each.component} exact key={each.path} />
+        ))}
+      </Suspense>
     </Switch>
   </HashRouter>
 );
