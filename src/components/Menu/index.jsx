@@ -8,6 +8,9 @@ function Menu() {
   const logout = () => {
     localStorage.removeItem('token');
     message.success('注销成功');
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 3000);
   };
 
   // 判断是否登录，显示不同的按钮

@@ -13,6 +13,9 @@ function Login() {
     }
     if (await login(email, password)) {
       message.info('登录成功，即将跳转至首页');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
       return null;
     }
     message.error('登录失败，用户名或密码错误');

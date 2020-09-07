@@ -9,6 +9,9 @@ function Register() {
   const handle = async () => {
     if (await register(email, password)) {
       message.success('注册成功，请等待管理员审核');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
     } else {
       message.error('注册失败');
     }

@@ -1,8 +1,7 @@
 import axios from 'axios';
-import cookie from 'react-cookies';
 import baseUrl from '../../base-url';
 
-const token = cookie.load('userToken');
+const token = localStorage.getItem('token') || '';
 const myAxios = axios.create({
   baseURL: baseUrl,
   timeout: 1000000,
