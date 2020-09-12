@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Button } from 'antd';
+import { Link } from 'react-router-dom';
 import './style.scss';
 
 function Nav() {
@@ -23,6 +24,9 @@ function Nav() {
         Limit 模式
       </Switch>
       <Button>搜索</Button>
+      <Link to="/upload">
+        <Button type="primary">上传</Button>
+      </Link>
     </nav>
   );
 }

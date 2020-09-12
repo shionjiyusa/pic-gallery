@@ -1,21 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Pagination } from 'antd';
 
 import getPictures from './service';
 import './style.scss';
 
 function Homepage() {
   const [pictures, setPictures] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const pageChange = (page, pageSize) => {
+    getPictures(page, pageSize).then((res) => {
+      setPictures(res.data.rows);
+      setTotal(res.data.count);
+    });
+  };
 
   useEffect(() => {
-    getPictures().then((res) => {
-      setPictures(res.data.rows);
-    });
+    pageChange();
   }, []);
 
   return (
-    <div className="gallery">
-      <ul>
+    <div>
+      <Pagination
+        defaultCurrent={1}
+        pageSize={10}
+        total={total}
+        onChange={(page, pageSize) => pageChange(page, pageSize)}
+      />
+      <ul className="gallery">
         {pictures.map((picture) => {
           const { picture_id: id, thumb_url: url } = picture;
           return (
@@ -28,6 +41,12 @@ function Homepage() {
           );
         })}
       </ul>
+      <Pagination
+        defaultCurrent={1}
+        pageSize={10}
+        total={total}
+        onChange={(page, pageSize) => pageChange(page, pageSize)}
+      />
     </div>
   );
 }

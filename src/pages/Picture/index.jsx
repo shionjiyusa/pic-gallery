@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import Score from './components/Score';
-import Tag from './components/Tag';
+// import Tag from './components/Tag';
 import getPicture from './service';
 import './style.scss';
 
@@ -20,11 +20,11 @@ function Picture() {
     return null;
   }
 
-  const { pic_dir, tags } = pic;
+  const { picture_id: id, picture_url: url, scores } = pic;
   return (
     <div className="picture-wrapper">
       <div className="pic">
-        <img src={pic_dir} alt={pid} />
+        <img src={url} alt={id} />
       </div>
       {/* <Score scores={scores} /> */}
       {/* <Tag tags={tags} /> */}
