@@ -7,11 +7,11 @@ import { getPicture } from './service';
 import './style.scss';
 
 function Picture() {
-  const { pid } = useParams(); // 获取路由 params
+  const { pid, limit = false } = useParams(); // 获取路由 params
   const [pic, setPic] = useState({});
 
   useEffect(() => {
-    getPicture(pid).then((res) => {
+    getPicture(pid, limit).then((res) => {
       setPic(res.data);
     });
   }, []);
@@ -21,21 +21,24 @@ function Picture() {
     return null;
   }
 
-  const { picture_id: id, picture_url: url, created_at: time, scores } = pic;
+  const { picture_url: url, created_at: createdAt, scores } = pic;
+  // 处理时间表示方法
+  const time = createdAt.split(/T|\./);
+
   return (
     <>
       <Menu />
       <div className="picture-wrapper">
         <div className="pic">
-          <img src={url} alt={id} />
+          <img src={url} alt={pid} />
         </div>
-        <Score scores={scores} />
+        <Score scores={scores} pid={pid} />
         <Tag pid={pid} />
         <div className="foot">
           <span>
             投稿时间：
             {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
-            {time}
+            {`${time[0]} ${time[1]}`}
           </span>
           <div>投稿人：</div>
         </div>

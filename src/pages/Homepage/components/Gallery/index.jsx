@@ -48,12 +48,12 @@ function Homepage() {
       />
       <ul className="gallery">
         {pictures.map((picture) => {
-          const { picture_id: id, thumb_url: url } = picture;
+          const { picture_id: id, thumb_url: url, collection_count: star } = picture;
           return (
             <li key={id}>
-              <Link to={`/picture/${id}`} key={id}>
+              <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
                 <img src={url} alt={id} />
-                <div className="card">{id}</div>
+                <div className="card">{star}</div>
               </Link>
             </li>
           );

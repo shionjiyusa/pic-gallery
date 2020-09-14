@@ -19,6 +19,10 @@ const router = [
     component: Picture,
   },
   {
+    path: '/picture/:pid/:limit',
+    component: Picture,
+  },
+  {
     path: '/login',
     component: Login,
   },
