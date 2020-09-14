@@ -3,12 +3,12 @@ import { Switch, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
-function Nav() {
+function Nav(props) {
   // 根据登录状态改变内容
-  const limit = !localStorage.getItem('token');
+  const login = !localStorage.getItem('token');
 
   const handleSwitch = (checked) => {
-    console.log(checked);
+    props.limitHandle(checked);
   };
 
   return (
@@ -17,7 +17,7 @@ function Nav() {
         onChange={(checked) => {
           handleSwitch(checked);
         }}
-        disabled={limit}
+        disabled={login}
         checkedChildren="Limit 模式"
         unCheckedChildren="Limit 模式"
       >

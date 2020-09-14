@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Pagination } from 'antd';
+import { Pagination, message } from 'antd';
+import Nav from '../Nav';
 
 import getPictures from './service';
 import './style.scss';
@@ -8,20 +9,37 @@ import './style.scss';
 function Homepage() {
   const [pictures, setPictures] = useState([]);
   const [total, setTotal] = useState(0);
+  const [limit, setLimit] = useState(false);
 
   const pageChange = (page, pageSize) => {
-    getPictures(page, pageSize).then((res) => {
-      setPictures(res.data.rows);
-      setTotal(res.data.count);
-    });
+    getPictures(limit, page, pageSize)
+      .then((res) => {
+        if (res.status === 200) {
+          setPictures(res.data.rows);
+          setTotal(res.data.count);
+        } else {
+          message.error('加载失败');
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        message.error('加载失败');
+      });
   };
 
   useEffect(() => {
     pageChange();
-  }, []);
+  }, [limit]);
+
+  // Nav 组件切换状态
+  const limitHandle = (navLimit) => {
+    setLimit(navLimit);
+    setPictures([]);
+  };
 
   return (
     <div>
+      <Nav limitHandle={limitHandle} />
       <Pagination
         defaultCurrent={1}
         pageSize={10}
