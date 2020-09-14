@@ -4,4 +4,8 @@ function getPicture(pid) {
   return myAxios(`/api/pictures/${pid}`);
 }
 
-export default getPicture;
+function getTags(pid) {
+  return myAxios(`/api/tags/picture/${pid}`);
+}
+
+export { getPicture, getTags };

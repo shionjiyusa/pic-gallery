@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import Score from './components/Score';
-// import Tag from './components/Tag';
-import getPicture from './service';
+import Menu from '../../components/Menu';
+import Score from './components/Score';
+import Tag from './components/Tag';
+import { getPicture } from './service';
 import './style.scss';
 
 function Picture() {
@@ -20,15 +21,26 @@ function Picture() {
     return null;
   }
 
-  const { picture_id: id, picture_url: url, scores } = pic;
+  const { picture_id: id, picture_url: url, created_at: time, scores } = pic;
   return (
-    <div className="picture-wrapper">
-      <div className="pic">
-        <img src={url} alt={id} />
+    <>
+      <Menu />
+      <div className="picture-wrapper">
+        <div className="pic">
+          <img src={url} alt={id} />
+        </div>
+        <Score scores={scores} />
+        <Tag pid={pid} />
+        <div className="foot">
+          <span>
+            投稿时间：
+            {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
+            {time}
+          </span>
+          <div>投稿人：</div>
+        </div>
       </div>
-      {/* <Score scores={scores} /> */}
-      {/* <Tag tags={tags} /> */}
-    </div>
+    </>
   );
 }
 
