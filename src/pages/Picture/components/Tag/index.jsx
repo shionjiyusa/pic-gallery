@@ -35,6 +35,9 @@ function Tag(props) {
     return null;
   };
 
+  // 根据登录状态改变内容
+  const login = !localStorage.getItem('token');
+
   return (
     <div className="titleWrapper">
       {tags.map((tag) => (
@@ -52,7 +55,9 @@ function Tag(props) {
         </div>
       ))}
       <div className="site-tag-plus">
-        <Button onClick={() => setTagModalVisible(true)}>+ 新标签</Button>
+        <Button disabled={login} onClick={() => setTagModalVisible(true)}>
+          + 新标签
+        </Button>
         <Modal
           title="添加标签"
           visible={tagModalVisible}

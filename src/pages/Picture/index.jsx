@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Menu from '../../components/Menu';
 import Score from './components/Score';
 import Tag from './components/Tag';
+import Comment from './components/Comment';
 import { getPicture, getCollectionState, collect, unCollect } from './service';
 import './style.scss';
 
@@ -26,15 +27,22 @@ function Picture() {
       .catch(() => null);
   }, []);
 
+  // 根据登录状态改变内容
+  const login = !localStorage.getItem('token');
+
   // 收藏图片
   const collectingPic = () => {
-    collect(pid);
-    setCollectionState(true);
+    if (!login) {
+      collect(pid);
+      setCollectionState(true);
+    }
   };
   // 取消收藏
   const unCollectingPic = () => {
-    unCollect(pid);
-    setCollectionState(false);
+    if (!login) {
+      unCollect(pid);
+      setCollectionState(false);
+    }
   };
 
   // 判断对象是否为空，解决空对象属性引用报错
@@ -54,18 +62,18 @@ function Picture() {
           <img src={url} alt={pid} />
         </div>
         {collectionState ? (
-          <div
+          <span
             className="iconfont"
             title="取消收藏"
             style={{ color: 'red' }}
             onClick={unCollectingPic}
           >
             &#xe613;
-          </div>
+          </span>
         ) : (
-          <div className="iconfont" title="收藏图片" onClick={collectingPic}>
+          <span className="iconfont" title="收藏图片" onClick={collectingPic}>
             &#xe613;
-          </div>
+          </span>
         )}
         <Score scores={scores} pid={pid} />
         <Tag pid={pid} />
@@ -77,6 +85,7 @@ function Picture() {
           </span>
           <div>投稿人：</div>
         </div>
+        <Comment pid={pid} />
       </div>
     </>
   );

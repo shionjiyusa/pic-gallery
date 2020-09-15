@@ -28,4 +28,22 @@ function postScore(newScore, pid) {
   return myAxios.post(`/api/pictures/scores/${pid}`, { score: newScore });
 }
 
-export { getPicture, getCollectionState, collect, unCollect, getTags, postScore, postTag };
+function getComments(pid) {
+  return myAxios.get(`/api/comments/picture/${pid}`);
+}
+
+function postComment(pid, comment) {
+  return myAxios.post(`/api/comments/picture/${pid}`, { comment });
+}
+
+export {
+  getPicture,
+  getCollectionState,
+  collect,
+  unCollect,
+  getTags,
+  postScore,
+  postTag,
+  getComments,
+  postComment,
+};

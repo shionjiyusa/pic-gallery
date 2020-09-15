@@ -35,6 +35,9 @@ function Score(props) {
       });
   };
 
+  // 根据登录状态改变内容
+  const login = !localStorage.getItem('token');
+
   return (
     <>
       <div className="titleWrapper">
@@ -49,8 +52,10 @@ function Score(props) {
             setNewScore(score);
           }}
         />
-        <Popconfirm title="确认评分吗？" onConfirm={postNewScore}>
-          <Button type="danger">增加评分</Button>
+        <Popconfirm title="确认评分吗？" disabled={login} onConfirm={postNewScore}>
+          <Button type="danger" disabled={login}>
+            增加评分
+          </Button>
         </Popconfirm>
       </div>
     </>
