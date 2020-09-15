@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import { getTags } from '../../service';
+import { Button, Modal, Input, message } from 'antd';
+import { getTags, postTag } from '../../service';
 
 function Tag(props) {
   const { pid } = props;
   const [tags, setTags] = useState([]);
+  const [tagModalVisible, setTagModalVisible] = useState(false);
+  const [newTag, setNewTag] = useState('');
 
   useEffect(() => {
     getTags(pid).then((res) => {
       setTags(res.data);
     });
   }, []);
+
+  const postNewTag = () => {
+    postTag(newTag, pid)
+      .then((res) => {
+        if (res.status === 204) {
+          message.success('添加成功');
+        }
+      })
+      .catch((e) => {
+        if (e.response.status === 401) {
+          message.error('请先登录');
+        } else {
+          message.error('添加失败');
+        }
+      });
+  };
 
   return (
     <div className="titleWrapper">
@@ -24,16 +43,23 @@ function Tag(props) {
           //   this.handleDelTag();
           // }}
         >
-          #{tag.tag}
+          {`# ${tag.tag}`}
         </div>
       ))}
-      <div className="site-tag-plus">+ 新标签</div>
-      {/* <AddTag
-            visible={this.state.addTagModal}
-            hideAddTagModal={this.hideAddTagModal}
-            tags={tags}
-            pid={picture_id}
-          /> */}
+      <div className="site-tag-plus">
+        <Button onClick={() => setTagModalVisible(true)}>+ 新标签</Button>
+        <Modal
+          title="添加标签"
+          visible={tagModalVisible}
+          onCancel={() => setTagModalVisible(false)}
+          centered
+          footer={null}
+          destroyOnClose
+        >
+          <Input name="tag" onChange={(e) => setNewTag(e.target.value)} />
+          <Button onClick={postNewTag}>添加标签</Button>
+        </Modal>
+      </div>
     </div>
   );
 }

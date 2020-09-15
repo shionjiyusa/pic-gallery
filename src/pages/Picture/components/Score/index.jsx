@@ -6,6 +6,17 @@ function Score(props) {
   const { scores, pid } = props;
   const [newScore, setNewScore] = useState(80);
 
+  // 计算总分
+  let addScore = 0;
+  let totalScore = 0;
+  scores.map((score) => {
+    addScore = score.score + addScore;
+    return null;
+  });
+  if (addScore) {
+    totalScore = Math.round(addScore / scores.length);
+  }
+
   const postNewScore = () => {
     postScore(newScore, pid)
       .then((res) => {
@@ -13,8 +24,14 @@ function Score(props) {
           message.success('评分成功');
         }
       })
-      .catch(() => {
-        message.error('评分失败');
+      .catch((e) => {
+        if (e.response.status === 401) {
+          message.error('请先登录');
+        } else if (e.response.status === 409) {
+          message.error('请勿重复评分');
+        } else {
+          message.error('评分失败');
+        }
       });
   };
 
@@ -22,13 +39,7 @@ function Score(props) {
     <>
       <div className="titleWrapper">
         当前总分：
-        {/* <span className="totalScore"></span> */}
-      </div>
-      <div className="titleWrapper">
-        {/* 展示所有评分 */}
-        {scores.map((score) => (
-          <div key={score.score_id}>{score.score}</div>
-        ))}
+        <span className="totalScore">{totalScore || '暂无评分'}</span>
       </div>
       <div className="newScore">
         <Slider

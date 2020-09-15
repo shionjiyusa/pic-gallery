@@ -12,4 +12,8 @@ function postScore(newScore, pid) {
   return myAxios.post(`/api/pictures/scores/${pid}`, { score: newScore });
 }
 
-export { getPicture, getTags, postScore };
+function postTag(newTag, pid) {
+  return myAxios.post(`/api/tags/${pid}`, { tag: newTag });
+}
+
+export { getPicture, getTags, postScore, postTag };
