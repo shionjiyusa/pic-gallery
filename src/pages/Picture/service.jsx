@@ -4,16 +4,28 @@ function getPicture(pid, limit) {
   return limit ? myAxios(`/api/pictures/${pid}/limit`) : myAxios(`/api/pictures/${pid}`);
 }
 
-function getTags(pid) {
-  return myAxios(`/api/tags/picture/${pid}`);
+function getCollectionState(pid) {
+  return myAxios(`api/pictures/collections/${pid}`);
 }
 
-function postScore(newScore, pid) {
-  return myAxios.post(`/api/pictures/scores/${pid}`, { score: newScore });
+function collect(pid) {
+  return myAxios.put(`api/pictures/collections/${pid}`);
+}
+
+function unCollect(pid) {
+  return myAxios.delete(`api/pictures/collections/${pid}`);
+}
+
+function getTags(pid) {
+  return myAxios(`/api/tags/picture/${pid}`);
 }
 
 function postTag(newTag, pid) {
   return myAxios.post(`/api/tags/${pid}`, { tag: newTag });
 }
 
-export { getPicture, getTags, postScore, postTag };
+function postScore(newScore, pid) {
+  return myAxios.post(`/api/pictures/scores/${pid}`, { score: newScore });
+}
+
+export { getPicture, getCollectionState, collect, unCollect, getTags, postScore, postTag };

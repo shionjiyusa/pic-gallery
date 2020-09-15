@@ -15,6 +15,10 @@ function Tag(props) {
   }, []);
 
   const postNewTag = () => {
+    if (newTag === '') {
+      message.error('不能添加空标签');
+      return null;
+    }
     postTag(newTag, pid)
       .then((res) => {
         if (res.status === 204) {
@@ -28,6 +32,7 @@ function Tag(props) {
           message.error('添加失败');
         }
       });
+    return null;
   };
 
   return (

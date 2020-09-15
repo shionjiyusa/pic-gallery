@@ -3,18 +3,39 @@ import { useParams } from 'react-router-dom';
 import Menu from '../../components/Menu';
 import Score from './components/Score';
 import Tag from './components/Tag';
-import { getPicture } from './service';
+import { getPicture, getCollectionState, collect, unCollect } from './service';
 import './style.scss';
 
 function Picture() {
   const { pid, limit = false } = useParams(); // 获取路由 params
   const [pic, setPic] = useState({});
+  const [collectionState, setCollectionState] = useState(false);
 
   useEffect(() => {
     getPicture(pid, limit).then((res) => {
       setPic(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    getCollectionState(pid)
+      .then(() => {
+        setCollectionState(true);
+        return null;
+      })
+      .catch(() => null);
+  }, []);
+
+  // 收藏图片
+  const collectingPic = () => {
+    collect(pid);
+    setCollectionState(true);
+  };
+  // 取消收藏
+  const unCollectingPic = () => {
+    unCollect(pid);
+    setCollectionState(false);
+  };
 
   // 判断对象是否为空，解决空对象属性引用报错
   if (JSON.stringify(pic) === '{}') {
@@ -32,6 +53,20 @@ function Picture() {
         <div className="pic">
           <img src={url} alt={pid} />
         </div>
+        {collectionState ? (
+          <div
+            className="iconfont"
+            title="取消收藏"
+            style={{ color: 'red' }}
+            onClick={unCollectingPic}
+          >
+            &#xe613;
+          </div>
+        ) : (
+          <div className="iconfont" title="收藏图片" onClick={collectingPic}>
+            &#xe613;
+          </div>
+        )}
         <Score scores={scores} pid={pid} />
         <Tag pid={pid} />
         <div className="foot">

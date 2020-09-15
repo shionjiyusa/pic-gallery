@@ -3,6 +3,7 @@ import { Switch, HashRouter, Route } from 'react-router-dom';
 import router from './router';
 
 import './main.scss';
+import './images/iconfont/iconfont.scss';
 
 const App = () => (
   <HashRouter>
