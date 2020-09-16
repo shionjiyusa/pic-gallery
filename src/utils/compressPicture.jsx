@@ -24,7 +24,7 @@ async function compressPicture(picture) {
     // promise 解决异步未完成就返回 thumb 的问题
     return new Promise((resolve) => {
       img.onload = () => {
-        const { width, height } = this;
+        const { width, height } = img;
         if (width < MAX_SIZE || height < MAX_SIZE) {
           // 图片尺寸太小不压缩
           return picture;
@@ -36,7 +36,7 @@ async function compressPicture(picture) {
         // 重绘图片进行压缩
         canvas.width = width * rate;
         canvas.height = height * rate;
-        ctx.drawImage(this, 0, 0, width * rate, height * rate);
+        ctx.drawImage(img, 0, 0, width * rate, height * rate);
         // 转换成 base64
         resolve(canvas.toDataURL('image/jpeg', 0.7));
         return null;
