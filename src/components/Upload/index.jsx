@@ -33,7 +33,7 @@ function Upload() {
         <input type="file" name="newPicture" onChange={(e) => setPicture(e.target.files[0])} />
         <span>
           <Checkbox type="checkbox" name="r18" onChange={(e) => setLimit(e.target.checked)}>
-            &nbsp;R18
+            &nbsp;limit
           </Checkbox>
         </span>
         <Button type="primary" onClick={(e) => uploadHandler(e)}>

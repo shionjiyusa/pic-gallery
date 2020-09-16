@@ -10,6 +10,7 @@ async function uploadPicture(uploadPic, uploadThumb, limit) {
   forms.append('uploadThumb', uploadThumb);
 
   const res = await myAxios.post(`/api/pictures`, forms, configs);
+  // eslint-disable-next-line camelcase
   const { picture_id: pid, picture_url, thumb_url } = res.data;
   return myAxios.patch(`/api/pictures/${pid}`, { picture_url, thumb_url, limit });
 }
