@@ -2,7 +2,7 @@
 
 header {
   height: 45px;
-  background-color: $theme-color-bg;
+  background-color: $theme-color-deep;
 
   .header-wrapper {
     position: relative;
@@ -18,7 +18,8 @@ header {
     font-size: 20px;
   }
 
-  button {
+  .menu-button {
     float: right;
+    padding-right: 5px;
   }
 }

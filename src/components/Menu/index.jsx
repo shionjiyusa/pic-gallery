@@ -23,14 +23,14 @@ function Menu() {
     );
   } else {
     loginButton = (
-      <div>
+      <>
         <Link to="/register">
           <Button type="primary">注册</Button>
         </Link>
         <Link to="/login">
           <Button type="primary">登录</Button>
         </Link>
-      </div>
+      </>
     );
   }
 
@@ -38,7 +38,7 @@ function Menu() {
     <header>
       <div className="header-wrapper">
         <div className="web-title">星の音</div>
-        {loginButton}
+        <div className="menu-button">{loginButton}</div>
       </div>
     </header>
   );

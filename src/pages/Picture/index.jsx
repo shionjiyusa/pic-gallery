@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 import Score from './components/Score';
 import Tag from './components/Tag';
 import Comment from './components/Comment';
@@ -57,36 +58,58 @@ function Picture() {
   return (
     <>
       <Menu />
-      <div className="picture-wrapper">
-        <div className="pic">
+      <div className="picture-page-wrapper">
+        <div className="picture">
           <img src={url} alt={pid} />
         </div>
-        {collectionState ? (
-          <span
-            className="iconfont"
-            title="取消收藏"
-            style={{ color: 'red' }}
-            onClick={unCollectingPic}
-          >
-            &#xe613;
-          </span>
-        ) : (
-          <span className="iconfont" title="收藏图片" onClick={collectingPic}>
-            &#xe613;
-          </span>
-        )}
-        <Score scores={scores} pid={pid} />
-        <Tag pid={pid} />
-        <div className="foot">
-          <span>
-            投稿时间：
-            {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
-            {`${time[0]} ${time[1]}`}
-          </span>
-          <div>投稿人：</div>
+        <div className="picture-foot">
+          <div className="picture-foot-column">
+            <span>
+              投稿时间：
+              {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
+              {`${time[0]} ${time[1]}`}
+              <br />
+              投稿人：
+            </span>
+
+            {collectionState ? (
+              <span
+                className="iconfont"
+                title="取消收藏"
+                style={{ color: 'red' }}
+                onClick={unCollectingPic}
+                role="button"
+                onKeyPress={() => {}}
+                tabIndex={0}
+              >
+                &#xe613;
+              </span>
+            ) : (
+              <span
+                className="iconfont"
+                title="收藏图片"
+                onClick={collectingPic}
+                role="button"
+                onKeyPress={() => {}}
+                tabIndex={0}
+              >
+                &#xe613;
+              </span>
+            )}
+          </div>
+
+          <div className="picture-foot-column">
+            <Score scores={scores} pid={pid} />
+          </div>
+          <div className="picture-foot-column">
+            <Tag pid={pid} />
+          </div>
+          <div className="picture-foot-column">
+            <Comment pid={pid} />
+          </div>
         </div>
-        <Comment pid={pid} />
       </div>
+      <Footer />
     </>
   );
 }

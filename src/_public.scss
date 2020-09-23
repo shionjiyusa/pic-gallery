@@ -1,10 +1,11 @@
 // 主题颜色
 $theme-color: #332a2c;
-$theme-color-bg: rgba(0, 0, 0, 0.02);
-$theme-color-deep: rgba(0, 0, 0, 0.05);
+$theme-color-bg: rgba(0, 0, 0, 0.03);
+$theme-color-deep: rgba(5, 5, 0, 0.09);
 $theme-color-text: #332a2c;
 
 $window-width: 1024px;
+$window-width-huge: 1400px;
 
 // 自定义样式
 @mixin button($color) {

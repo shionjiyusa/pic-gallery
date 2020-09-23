@@ -21,4 +21,15 @@
 
 .iconfont:hover {
   cursor: pointer;
+  animation: 2s linear 0s infinite normal star;
+}
+
+@keyframes star {
+  50% {
+    color: rgb(216, 115, 115);
+  }
+}
+
+.iconfont:focus {
+  outline: none;
 }

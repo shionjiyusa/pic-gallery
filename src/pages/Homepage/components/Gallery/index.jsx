@@ -38,30 +38,23 @@ function Homepage() {
   };
 
   return (
-    <div>
+    <div className="gallery-wrapper">
       <Nav limitHandle={limitHandle} />
-      <Pagination
-        defaultCurrent={1}
-        pageSize={10}
-        total={total}
-        onChange={(page, pageSize) => pageChange(page, pageSize)}
-      />
       <ul className="gallery">
         {pictures.map((picture) => {
           const { picture_id: id, thumb_url: url, collection_count: star } = picture;
           return (
-            <li key={id}>
-              <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
+            <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
+              <li key={id} data-collection={star}>
                 <img src={url} alt={id} />
-                <div className="card">{star}</div>
-              </Link>
-            </li>
+              </li>
+            </Link>
           );
         })}
       </ul>
       <Pagination
         defaultCurrent={1}
-        pageSize={10}
+        pageSize={20}
         total={total}
         onChange={(page, pageSize) => pageChange(page, pageSize)}
       />

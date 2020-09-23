@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Input, Button, message } from 'antd';
 import login from './service';
+import './style.scss';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginMsg, setLoginMsg] = useState('');
 
   const loginHandle = async () => {
     if (localStorage.getItem('token')) {
@@ -23,24 +25,31 @@ function Login() {
   };
 
   return (
-    <div className="loginWrapper">
-      用户登录 邮箱：
-      <Input
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-        type="email"
-        placeholder="仅支持邮箱登录"
-      />
-      密码：
-      <Input.Password
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
+    <div className="login-wrapper">
+      <h3>用户登录 </h3>
+      <div className="login-item">
+        <span>邮箱：</span>
+        <Input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          type="email"
+          placeholder="仅支持邮箱登录"
+        />
+      </div>
+      <div className="login-item">
+        <span>密码：</span>
+        <Input.Password
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+      </div>
+      <div className="login-message">{}</div>
       <Button type="primary" onClick={loginHandle}>
         登录
       </Button>
+      <img alt="yusa2" />
     </div>
   );
 }
