@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Button, message } from 'antd';
 import { getComments, postComment } from '../../service';
+import './style.scss';
 
 function Comment(props) {
   const { pid } = props;
@@ -35,14 +36,14 @@ function Comment(props) {
   const login = !localStorage.getItem('token');
 
   return (
-    <div>
+    <div className="comment-counter-set">
       评论列表：
       {comments.map((comment) => {
         // 处理时间表示方法
         const time = comment.created_at.split(/T|\./);
         return (
           <div key={comment.comment_id}>
-            <div>{`${time[0]} ${time[1]}`}</div>
+            <div className="comment-counter">{`${time[0]} ${time[1]}`}</div>
             <div>{comment.user.name}</div>
             <div>{comment.comment}</div>
           </div>
