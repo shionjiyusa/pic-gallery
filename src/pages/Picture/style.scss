@@ -2,7 +2,7 @@
 
 .picture-page-wrapper {
   margin: 0 auto 50px;
-  max-width: $window-width-huge;
+  max-width: $window-width;
 
   .picture {
     width: 100%;
@@ -13,11 +13,11 @@
       height: 100%;
       object-fit: contain;
       @media screen and (orientation: landscape) {
-        min-height: 480px;
+        // min-height: 480px;
         max-height: 95vh;
       }
       @media screen and (orientation: portrait) {
-        min-height: 55vh;
+        // min-height: 55vh;
         max-height: 95vh;
       }
     }
@@ -29,6 +29,41 @@
     .picture-foot-column {
       margin-bottom: 5px;
       padding-top: 5px;
+      overflow: hidden;
+
+      .picture-info {
+        margin-right: 80px;
+      }
+      .star-heart {
+        float: right;
+        margin-top: -8px;
+      }
+
+      .new-score {
+        margin-right: 100px;
+      }
+      .new-score-button {
+        float: right;
+      }
+
+      .tag-style {
+        margin-right: 12px;
+        font-size: 14px;
+        color: $tag-color;
+      }
+
+      .comment-box {
+        border-top: 1px solid currentColor;
+        margin-bottom: 10px;
+      }
+      .comment-new {
+        div {
+          margin-right: 80px;
+        }
+        button {
+          float: right;
+        }
+      }
     }
   }
 }

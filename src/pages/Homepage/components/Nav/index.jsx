@@ -24,9 +24,13 @@ function Nav(props) {
         Limit 模式
       </Switch>
       <Button>搜索</Button>
-      <Link to="/upload">
-        <Button type="primary">上传</Button>
-      </Link>
+      {!login && (
+        <Link to="/upload">
+          <Button type="primary">上传</Button>
+        </Link>
+      )}
+      {/* TODO: 新建排序方式 */}
+      <div>排序方式</div>
     </nav>
   );
 }

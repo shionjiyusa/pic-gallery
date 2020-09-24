@@ -12,6 +12,7 @@ function Picture() {
   const { pid, limit = false } = useParams(); // 获取路由 params
   const [pic, setPic] = useState({});
   const [collectionState, setCollectionState] = useState(false);
+  let login = true;
 
   useEffect(() => {
     getPicture(pid, limit).then((res) => {
@@ -20,16 +21,19 @@ function Picture() {
   }, []);
 
   useEffect(() => {
+    // 查询图片是否已收藏
+    login = !localStorage.getItem('token');
+    if (login) {
+      return;
+    }
     getCollectionState(pid)
       .then(() => {
         setCollectionState(true);
-        return null;
       })
-      .catch(() => null);
+      .catch(() => {});
   }, []);
 
   // 根据登录状态改变内容
-  const login = !localStorage.getItem('token');
 
   // 收藏图片
   const collectingPic = () => {
@@ -64,17 +68,9 @@ function Picture() {
         </div>
         <div className="picture-foot">
           <div className="picture-foot-column">
-            <span>
-              投稿时间：
-              {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
-              {`${time[0]} ${time[1]}`}
-              <br />
-              投稿人：
-            </span>
-
             {collectionState ? (
               <span
-                className="iconfont"
+                className="iconfont star-heart"
                 title="取消收藏"
                 style={{ color: 'red' }}
                 onClick={unCollectingPic}
@@ -86,7 +82,7 @@ function Picture() {
               </span>
             ) : (
               <span
-                className="iconfont"
+                className="iconfont star-heart"
                 title="收藏图片"
                 onClick={collectingPic}
                 role="button"
@@ -96,6 +92,13 @@ function Picture() {
                 &#xe613;
               </span>
             )}
+            <div className="picture-info">
+              投稿时间：
+              {/* {Moment(Number(`${created_at}000`)).format('YYYY-MM-DD')} */}
+              {`${time[0]} ${time[1]}`}
+              <br />
+              投稿人：
+            </div>
           </div>
 
           <div className="picture-foot-column">

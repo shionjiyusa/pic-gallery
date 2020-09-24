@@ -40,11 +40,14 @@ function Score(props) {
 
   return (
     <>
-      <div className="titleWrapper">
-        当前总分：
-        <span className="totalScore">{totalScore || '暂无评分'}</span>
+      <div className="new-score-button">
+        <Popconfirm title="确认评分吗？" disabled={login} onConfirm={postNewScore}>
+          <Button type="danger" disabled={login}>
+            增加评分
+          </Button>
+        </Popconfirm>
       </div>
-      <div className="newScore">
+      <div className="new-score">
         <Slider
           className="slider"
           defaultValue={80}
@@ -52,11 +55,11 @@ function Score(props) {
             setNewScore(score);
           }}
         />
-        <Popconfirm title="确认评分吗？" disabled={login} onConfirm={postNewScore}>
-          <Button type="danger" disabled={login}>
-            增加评分
-          </Button>
-        </Popconfirm>
+      </div>
+
+      <div>
+        当前总分：
+        <span className="totalScore">{totalScore || '暂无评分'}</span>
       </div>
     </>
   );

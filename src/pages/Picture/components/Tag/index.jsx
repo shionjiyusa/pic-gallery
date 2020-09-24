@@ -39,38 +39,35 @@ function Tag(props) {
   const login = !localStorage.getItem('token');
 
   return (
-    <div className="titleWrapper">
+    <>
       {tags.map((tag) => (
-        <div
-          key={tag.tag_id}
-          className="tagStyle"
-          title="yusa"
-          color="cyan"
-          // onClose={(e) => {
-          //   e.preventDefault();
-          //   this.handleDelTag();
-          // }}
-        >
+        <span key={tag.tag_id} className="tag-style" title="yusa" color="cyan">
           {`# ${tag.tag}`}
-        </div>
+        </span>
       ))}
-      <div className="site-tag-plus">
+      <span>
         <Button disabled={login} onClick={() => setTagModalVisible(true)}>
           + 新标签
         </Button>
-        <Modal
-          title="添加标签"
-          visible={tagModalVisible}
-          onCancel={() => setTagModalVisible(false)}
-          centered
-          footer={null}
-          destroyOnClose
-        >
-          <Input name="tag" onChange={(e) => setNewTag(e.target.value)} />
-          <Button onClick={postNewTag}>添加标签</Button>
-        </Modal>
-      </div>
-    </div>
+      </span>
+      <Modal
+        title="添加标签"
+        visible={tagModalVisible}
+        onCancel={() => setTagModalVisible(false)}
+        centered
+        footer={null}
+        destroyOnClose
+      >
+        <div className="tag-modal">
+          <Button type="primary" onClick={postNewTag} style={{ float: 'right' }}>
+            添加标签
+          </Button>
+          <div style={{ marginRight: '100px' }}>
+            <Input name="tag" onChange={(e) => setNewTag(e.target.value)} />
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 }
 

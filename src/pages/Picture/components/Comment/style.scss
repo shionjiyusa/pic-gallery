@@ -5,4 +5,5 @@
 .comment-counter:before {
   content: counter(comments, upper-roman);
   counter-increment: comments 1;
+  margin-right: 5px;
 }
