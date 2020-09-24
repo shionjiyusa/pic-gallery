@@ -29,7 +29,9 @@
     .picture-foot-column {
       margin-bottom: 5px;
       padding-top: 5px;
+      padding-bottom: 5px;
       overflow: hidden;
+      border-bottom: 1px solid $theme-color-deep;
 
       .picture-info {
         margin-right: 80px;
@@ -37,6 +39,7 @@
       .star-heart {
         float: right;
         margin-top: -8px;
+        margin-bottom: -8px;
       }
 
       .new-score {
