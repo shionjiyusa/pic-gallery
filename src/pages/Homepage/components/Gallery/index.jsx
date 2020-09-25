@@ -9,10 +9,11 @@ import './style.scss';
 function Homepage() {
   const [pictures, setPictures] = useState([]);
   const [total, setTotal] = useState(1);
+  const [orderType, setOrderType] = useState('');
   const [limit, setLimit] = useState(false);
 
   const pageChange = (page, pageSize) => {
-    getPictures(limit, page, pageSize)
+    getPictures(limit, page, pageSize, orderType)
       .then((res) => {
         if (res.status === 200) {
           setPictures(res.data.rows);
@@ -28,7 +29,11 @@ function Homepage() {
 
   useEffect(() => {
     pageChange();
-  }, [limit]);
+  }, [limit, orderType]);
+
+  const setOrder = (type) => {
+    setOrderType(type);
+  };
 
   // Nav 组件切换状态
   const limitHandle = (navLimit) => {
@@ -38,7 +43,7 @@ function Homepage() {
 
   return (
     <div className="gallery-wrapper">
-      <Nav limitHandle={limitHandle} />
+      <Nav limitHandle={limitHandle} setOrder={setOrder} />
       <ul className="gallery">
         {pictures.map((picture) => {
           const { picture_id: id, thumb_url: url, collection_count: star } = picture;

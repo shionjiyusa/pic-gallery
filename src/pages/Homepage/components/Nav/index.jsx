@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Button, Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
 import './style.scss';
 
 function Nav(props) {
+  const [orderType, setOrderType] = useState('');
+
+  useEffect(() => {
+    props.setOrder(orderType);
+  }, [orderType]);
+
   // 根据登录状态改变内容
   const login = !localStorage.getItem('token');
 
@@ -13,17 +19,15 @@ function Nav(props) {
 
   const orderMenu = (
     <Menu>
-      <Menu.Item>默认</Menu.Item>
-      <Menu.Item>收藏</Menu.Item>
-      <Menu.Item>评分</Menu.Item>
-      <Menu.Item>时间</Menu.Item>
+      <Menu.Item onClick={() => setOrderType('')}>默认</Menu.Item>
+      <Menu.Item onClick={() => setOrderType('collection_count')}>收藏</Menu.Item>
+      <Menu.Item onClick={() => setOrderType('picture_id')}>时间</Menu.Item>
     </Menu>
   );
 
   return (
     <nav>
       <span style={{ float: 'right' }}>
-        {/* TODO: 排序功能 */}
         <Dropdown overlay={orderMenu}>
           <Button type="primary">排序方式</Button>
         </Dropdown>
