@@ -8,7 +8,14 @@ async function register(email, password) {
     }
     return false;
   } catch (err) {
-    return false;
+    switch (err.response.status) {
+      case 409:
+        return '用户已经被占用';
+      case 422:
+        return '邮箱格式不正确';
+      default:
+        return '网络错误';
+    }
   }
 }
 

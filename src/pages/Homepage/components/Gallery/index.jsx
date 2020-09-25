@@ -8,7 +8,7 @@ import './style.scss';
 
 function Homepage() {
   const [pictures, setPictures] = useState([]);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(1);
   const [limit, setLimit] = useState(false);
 
   const pageChange = (page, pageSize) => {
@@ -21,8 +21,7 @@ function Homepage() {
           message.error('加载失败');
         }
       })
-      .catch((e) => {
-        console.log(e);
+      .catch(() => {
         message.error('加载失败');
       });
   };

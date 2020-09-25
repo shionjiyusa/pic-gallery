@@ -7,7 +7,6 @@
 
   background-color: $theme-color-bg;
   border: 1px solid #ddd;
-  border-radius: 5px;
 
   h3 {
     text-align: center;
@@ -15,14 +14,19 @@
 
   .login-item {
     margin-bottom: 10px;
-
-    input[type='email'],
-    .ant-input-password {
-      display: inline-block;
-    }
   }
 
   button {
     width: 100%;
+  }
+}
+
+.two-column-box {
+  line-height: 32px;
+  .column-float {
+    float: left;
+  }
+  .column-flex {
+    margin-left: 3em;
   }
 }

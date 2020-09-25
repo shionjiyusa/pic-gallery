@@ -12,7 +12,7 @@ function Comment(props) {
     getComments(pid).then((res) => {
       setComments(res.data.rows);
     });
-  }, []);
+  }, [comments]);
 
   const postNewComment = () => {
     if (!newComment) {
@@ -20,6 +20,7 @@ function Comment(props) {
     } else {
       postComment(pid, newComment)
         .then(() => {
+          setComments([]);
           message.success('评论成功');
         })
         .catch((e) => {

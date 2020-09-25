@@ -21,10 +21,12 @@ function Upload() {
     const thumb = (await compressPicture(picture)) || picture;
     await uploadPicture(picture, thumb, limit)
       .then(() => {
+        // TODO: 上传进度条
         setUploading(false);
         message.success('上传成功');
       })
       .catch(() => {
+        setUploading(false);
         message.error('上传失败');
       });
     return null;

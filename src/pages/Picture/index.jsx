@@ -12,7 +12,7 @@ function Picture() {
   const { pid, limit = false } = useParams(); // 获取路由 params
   const [pic, setPic] = useState({});
   const [collectionState, setCollectionState] = useState(false);
-  let login = true;
+  let login = !!localStorage.getItem('token');
 
   useEffect(() => {
     getPicture(pid, limit).then((res) => {
@@ -22,8 +22,8 @@ function Picture() {
 
   useEffect(() => {
     // 查询图片是否已收藏
-    login = !localStorage.getItem('token');
-    if (login) {
+    login = !!localStorage.getItem('token');
+    if (!login) {
       return;
     }
     getCollectionState(pid)
@@ -37,14 +37,14 @@ function Picture() {
 
   // 收藏图片
   const collectingPic = () => {
-    if (!login) {
+    if (login) {
       collect(pid);
       setCollectionState(true);
     }
   };
   // 取消收藏
   const unCollectingPic = () => {
-    if (!login) {
+    if (login) {
       unCollect(pid);
       setCollectionState(false);
     }
@@ -75,7 +75,7 @@ function Picture() {
                 style={{ color: 'red' }}
                 onClick={unCollectingPic}
                 role="button"
-                onKeyPress={() => {}}
+                onKeyPress={unCollectingPic}
                 tabIndex={0}
               >
                 &#xe613;
@@ -86,7 +86,7 @@ function Picture() {
                 title="收藏图片"
                 onClick={collectingPic}
                 role="button"
-                onKeyPress={() => {}}
+                onKeyPress={collectingPic}
                 tabIndex={0}
               >
                 &#xe613;

@@ -12,7 +12,7 @@ function Tag(props) {
     getTags(pid).then((res) => {
       setTags(res.data);
     });
-  }, []);
+  }, [tags]);
 
   const postNewTag = () => {
     if (newTag === '') {
@@ -22,6 +22,7 @@ function Tag(props) {
     postTag(newTag, pid)
       .then((res) => {
         if (res.status === 204) {
+          setTags([]);
           message.success('添加成功');
         }
       })

@@ -5,15 +5,15 @@ function getPicture(pid, limit) {
 }
 
 function getCollectionState(pid) {
-  return myAxios(`api/pictures/collections/${pid}`);
+  return myAxios(`/api/pictures/collections/${pid}`);
 }
 
 function collect(pid) {
-  return myAxios.put(`api/pictures/collections/${pid}`);
+  return myAxios.put(`/api/pictures/collections/${pid}`);
 }
 
 function unCollect(pid) {
-  return myAxios.delete(`api/pictures/collections/${pid}`);
+  return myAxios.delete(`/api/pictures/collections/${pid}`);
 }
 
 function getTags(pid) {
