@@ -57,7 +57,7 @@ function Comment(props) {
         );
       })}
       <br />
-      发表评论:
+      发表评论：
       <div className="comment-new">
         <Button disabled={!login} type="primary" onClick={postNewComment}>
           提交

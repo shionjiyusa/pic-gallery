@@ -43,7 +43,7 @@ function Score(props) {
     <>
       <div className="new-score-button">
         <Popconfirm title="确认评分吗？" disabled={login} onConfirm={postNewScore}>
-          <Button type="danger" disabled={login}>
+          <Button type="primary" disabled={login}>
             增加评分
           </Button>
         </Popconfirm>

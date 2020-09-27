@@ -1,0 +1,48 @@
+@import '../../public';
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (min-width: 769px) {
+  .profile {
+    max-width: $window-width;
+    margin: 0 auto 50px;
+    border-left: 200px solid;
+    background-color: $theme-color-deep;
+    // 左右两栏布局
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .user-info {
+      float: left;
+      padding: 10px;
+      margin-left: -200px;
+      width: 200px;
+      background-color: rgb(250, 250, 250);
+
+      // 用户头像
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+        border: 1px solid $theme-color-bg;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      // 资料修改按钮
+      div div {
+        margin-top: 10px;
+        margin-bottom: 50px;
+      }
+    }
+
+    section {
+      overflow: hidden;
+    }
+  }
+}

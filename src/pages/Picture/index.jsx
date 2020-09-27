@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
@@ -54,7 +54,7 @@ function Picture() {
     return null;
   }
 
-  const { picture_url: url, created_at: createdAt, scores } = pic;
+  const { picture_url: url, created_at: createdAt, scores, created_by: uid, username } = pic;
   // 处理时间表示方法
   const time = createdAt.split(/T|\./);
 
@@ -97,14 +97,14 @@ function Picture() {
               {`${time[0]} ${time[1]}`}
               <br />
               投稿人：
+              <Link to={`/user/${uid}`}>{username}</Link>
             </div>
-          </div>
-
-          <div className="picture-foot-column">
-            <Score scores={scores} pid={pid} />
           </div>
           <div className="picture-foot-column">
             <Tag pid={pid} />
+          </div>
+          <div className="picture-foot-column">
+            <Score scores={scores} pid={pid} />
           </div>
           <div className="picture-foot-column">
             <Comment pid={pid} />

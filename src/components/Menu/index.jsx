@@ -30,7 +30,7 @@ function Menu() {
                 <css-icon class="icon-person"> </css-icon>
               )}
 
-              {user.email}
+              {user.name || user.email}
             </span>
           </Button>
         </Link>
@@ -43,7 +43,7 @@ function Menu() {
     loginButton = (
       <>
         <Link to="/register">
-          <Button type="primary">注册</Button>
+          <Button>注册</Button>
         </Link>
         <Link to="/login">
           <Button type="primary">登录</Button>
