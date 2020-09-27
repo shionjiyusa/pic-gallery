@@ -1,0 +1,72 @@
+.gallery {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  font-size: 0;
+  li {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding: 12.5%;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+      padding: 25%;
+    }
+
+    &:before {
+      content: '';
+      box-sizing: border-box;
+      -ms-box-sizing: border-box;
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background-color: rgba(0, 0, 0, 0.1);
+      transition: background-color 0.2s;
+    }
+
+    &:hover:before {
+      background-color: transparent;
+    }
+
+    &:after {
+      content: '收藏数：' attr(data-collection);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      line-height: 30px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: rgb(250, 250, 250);
+      font-size: 14px;
+      transform: translateY(100%);
+      transition: transform 0.2s;
+      visibility: visible;
+    }
+
+    &:hover:after {
+      transform: translateY(0);
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      position: absolute;
+      top: 1%;
+      left: 1%;
+      width: 98%;
+      height: 98%;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.gallery + ul {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

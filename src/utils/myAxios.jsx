@@ -2,13 +2,16 @@ import axios from 'axios';
 import baseUrl from '../../base-url';
 
 const token = localStorage.getItem('token') || '';
+
+const headers = {
+  'X-Requested-With': 'XMLHttpRequest',
+  Authorization: token === '' ? '' : `Bearer ${token}`,
+};
+
 const myAxios = axios.create({
   baseURL: baseUrl,
   timeout: 1000000,
-  headers: {
-    'X-Requested-With': 'XMLHttpRequest',
-    Authorization: `Bearer ${token}`,
-  },
+  headers,
 });
 
 // myAxios.interceptors.response.use(

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import Score from './components/Score';
@@ -12,7 +13,8 @@ function Picture() {
   const { pid, limit = false } = useParams(); // 获取路由 params
   const [pic, setPic] = useState({});
   const [collectionState, setCollectionState] = useState(false);
-  let login = !!localStorage.getItem('token');
+  // 根据登录状态改变内容
+  const login = checkLoginStatus();
 
   useEffect(() => {
     getPicture(pid, limit).then((res) => {
@@ -22,7 +24,6 @@ function Picture() {
 
   useEffect(() => {
     // 查询图片是否已收藏
-    login = !!localStorage.getItem('token');
     if (!login) {
       return;
     }
@@ -32,8 +33,6 @@ function Picture() {
       })
       .catch(() => {});
   }, []);
-
-  // 根据登录状态改变内容
 
   // 收藏图片
   const collectingPic = () => {

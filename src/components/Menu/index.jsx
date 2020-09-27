@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button, message } from 'antd';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import './style.scss';
 
 function Menu() {
@@ -13,13 +14,30 @@ function Menu() {
     }, 3000);
   };
 
+  const user = checkLoginStatus();
+
   // 判断是否登录，显示不同的按钮
   let loginButton = null;
-  if (localStorage.getItem('token')) {
+  if (user) {
     loginButton = (
-      <Button type="danger" onClick={logout}>
-        注销
-      </Button>
+      <>
+        <Link to={`/user/${user.uid}`}>
+          <Button>
+            <span>
+              {user.avatar_url ? (
+                <img src={user.avatar_url} alt={user.uid} />
+              ) : (
+                <css-icon class="icon-person"> </css-icon>
+              )}
+
+              {user.email}
+            </span>
+          </Button>
+        </Link>
+        <Button type="danger" onClick={logout}>
+          注销
+        </Button>
+      </>
     );
   } else {
     loginButton = (

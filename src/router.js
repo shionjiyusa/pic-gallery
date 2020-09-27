@@ -3,6 +3,7 @@ import { lazy } from 'react';
 // 页面使用懒加载
 const Homepage = lazy(() => import(/* webpackChunkName: "homepage" */ './pages/Homepage'));
 const Picture = lazy(() => import(/* webpackChunkName: "picture" */ './pages/Picture'));
+const User = lazy(() => import(/* webpackChunkName: "user" */ './pages/User'));
 const Login = lazy(() => import(/* webpackChunkName: "login" */ './components/Menu/Login'));
 const Register = lazy(() =>
   import(/* webpackChunkName: "register" */ './components/Menu/Register')
@@ -17,6 +18,10 @@ const router = [
   {
     path: '/picture/:pid',
     component: Picture,
+  },
+  {
+    path: '/user/:uid',
+    component: User,
   },
   {
     path: '/picture/:pid/:limit',

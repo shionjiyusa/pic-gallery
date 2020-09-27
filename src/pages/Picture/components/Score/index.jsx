@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Slider, Button, Popconfirm, message } from 'antd';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import { postScore } from '../../service';
 
 function Score(props) {
@@ -36,7 +37,7 @@ function Score(props) {
   };
 
   // 根据登录状态改变内容
-  const login = !localStorage.getItem('token');
+  const login = !checkLoginStatus();
 
   return (
     <>

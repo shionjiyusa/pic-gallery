@@ -51,6 +51,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "ahooks": "^2.6.1",
     "antd": "^4.5.4",
     "axios": "^0.19.2",
     "react": "^16.13.1",

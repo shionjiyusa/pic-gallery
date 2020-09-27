@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Button, message } from 'antd';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import { getComments, postComment } from '../../service';
 import './style.scss';
 
@@ -7,12 +8,13 @@ function Comment(props) {
   const { pid } = props;
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getComments(pid).then((res) => {
       setComments(res.data.rows);
     });
-  }, [comments]);
+  }, [refresh]);
 
   const postNewComment = () => {
     if (!newComment) {
@@ -20,7 +22,7 @@ function Comment(props) {
     } else {
       postComment(pid, newComment)
         .then(() => {
-          setComments([]);
+          setRefresh(!refresh);
           message.success('评论成功');
         })
         .catch((e) => {
@@ -33,8 +35,8 @@ function Comment(props) {
     }
   };
 
-  // 根据登录状态改变内容
-  const login = !localStorage.getItem('token');
+  // 根据登录状态改变组件可用状态
+  const login = !!checkLoginStatus();
 
   return (
     <div className="comment-counter-set">
@@ -57,7 +59,7 @@ function Comment(props) {
       <br />
       发表评论:
       <div className="comment-new">
-        <Button disabled={login} type="primary" onClick={postNewComment}>
+        <Button disabled={!login} type="primary" onClick={postNewComment}>
           提交
         </Button>
         <div>
@@ -66,7 +68,7 @@ function Comment(props) {
             onChange={(e) => {
               setNewComment(e.target.value);
             }}
-            disabled={login}
+            disabled={!login}
           />
         </div>
       </div>

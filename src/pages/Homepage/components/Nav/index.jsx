@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Button, Menu, Dropdown } from 'antd';
 import { Link } from 'react-router-dom';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import './style.scss';
 
 function Nav(props) {
@@ -11,7 +12,7 @@ function Nav(props) {
   }, [orderType]);
 
   // 根据登录状态改变内容
-  const login = !localStorage.getItem('token');
+  const login = !!checkLoginStatus();
 
   const handleSwitch = (checked) => {
     props.limitHandle(checked);
@@ -36,7 +37,7 @@ function Nav(props) {
         onChange={(checked) => {
           handleSwitch(checked);
         }}
-        disabled={login}
+        disabled={!login}
         checkedChildren="Limit 模式"
         unCheckedChildren="Limit 模式"
       >
@@ -44,7 +45,7 @@ function Nav(props) {
       </Switch>
       {/* TODO: 搜索功能 */}
       <Button>搜索</Button>
-      {!login && (
+      {login && (
         <Link to="/upload">
           <Button type="primary">上传</Button>
         </Link>

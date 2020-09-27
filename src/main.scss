@@ -16,3 +16,25 @@ body {
 }
 
 // 解决 css 重复生成的问题 (finished)
+
+// css 图标公共样式
+css-icon {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  font-size: 20px;
+  box-sizing: border-box;
+  text-indent: -9999px;
+  vertical-align: middle;
+  position: relative;
+}
+css-icon::before,
+css-icon::after {
+  content: '';
+  box-sizing: inherit;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

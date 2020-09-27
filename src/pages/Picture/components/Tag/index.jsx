@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Input, message } from 'antd';
+import checkLoginStatus from 'utils/checkLoginStatus';
 import { getTags, postTag } from '../../service';
 
 function Tag(props) {
@@ -7,12 +8,13 @@ function Tag(props) {
   const [tags, setTags] = useState([]);
   const [tagModalVisible, setTagModalVisible] = useState(false);
   const [newTag, setNewTag] = useState('');
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getTags(pid).then((res) => {
       setTags(res.data);
     });
-  }, [tags]);
+  }, [refresh]);
 
   const postNewTag = () => {
     if (newTag === '') {
@@ -22,13 +24,16 @@ function Tag(props) {
     postTag(newTag, pid)
       .then((res) => {
         if (res.status === 204) {
-          setTags([]);
+          setRefresh(!refresh);
           message.success('添加成功');
         }
       })
       .catch((e) => {
-        if (e.response.status === 401) {
+        const code = e.response.status;
+        if (code === 401) {
           message.error('请先登录');
+        } else if (code === 409) {
+          message.error('请勿重复添加');
         } else {
           message.error('添加失败');
         }
@@ -37,7 +42,7 @@ function Tag(props) {
   };
 
   // 根据登录状态改变内容
-  const login = !localStorage.getItem('token');
+  const login = !checkLoginStatus();
 
   return (
     <>
