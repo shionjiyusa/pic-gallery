@@ -1,0 +1,11 @@
+.profile-column {
+  margin-bottom: 10px;
+
+  span {
+    float: left;
+
+    & + div {
+      overflow: hidden;
+    }
+  }
+}

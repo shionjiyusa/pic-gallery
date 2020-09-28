@@ -5,15 +5,20 @@ import { message, Button, Menu as AMenu } from 'antd';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
+import AvatarSelector from './components/AvatarSelector';
+import ProfileEditor from './components/ProfileEditor';
 import getUserInfo from './service';
 import './style.scss';
 
 function User() {
   const { uid } = useParams();
-  const [user, setUser] = useState({});
-  const [menu, setMenu] = useState('collection');
+  const [user, setUser] = useState({}); // 用户资料
+  const [menu, setMenu] = useState('collection'); // 菜单状态
+  const [avatarSelector, setAvatarSelector] = useState(false); // 头像修改 Modal
+  const [profileEditor, setProfileEditor] = useState(false); // 资料修改 Modal
 
   useEffect(() => {
+    // 获取用户资料
     getUserInfo(uid)
       .then((res) => {
         setUser(res.data);
@@ -53,10 +58,17 @@ function User() {
             <br />
             {isOwner && (
               <div>
-                <Button>修改头像</Button>
-                <Button>修改资料</Button>
+                <Button onClick={() => setAvatarSelector(true)}>修改头像</Button>
+                <Button onClick={() => setProfileEditor(true)}>修改资料</Button>
               </div>
             )}
+            {loginUser && !isOwner && (
+              <div>
+                <Button type="primary">关注</Button>
+              </div>
+            )}
+            <AvatarSelector visible={avatarSelector} setVisible={setAvatarSelector} />
+            <ProfileEditor visible={profileEditor} setVisible={setProfileEditor} />
           </div>
         </span>
         <section>
