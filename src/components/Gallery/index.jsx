@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Pagination, message } from 'antd';
+import Nav from './Nav';
 import getPictures from './service';
 import './style.scss';
 
-// TODO: 将 gallery 组件化
+// TODO: gallery 组件化
 function Homepage() {
   const [pictures, setPictures] = useState([]);
   const [total, setTotal] = useState(1);
@@ -34,26 +35,35 @@ function Homepage() {
     setOrderType(type);
   };
 
+  // Nav 组件切换状态
+  const limitHandle = (navLimit) => {
+    setLimit(navLimit);
+    setPictures([]);
+  };
+
   return (
     <>
-      <ul className="gallery">
-        {pictures.map((picture) => {
-          const { picture_id: id, thumb_url: url, collection_count: star } = picture;
-          return (
-            <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
-              <li key={id} data-collection={star}>
-                <img src={url} alt={id} />
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-      <Pagination
-        defaultCurrent={1}
-        pageSize={20}
-        total={total}
-        onChange={(page, pageSize) => pageChange(page, pageSize)}
-      />
+      <div className="gallery-wrapper">
+        <Nav limitHandle={limitHandle} setOrder={setOrder} />
+        <ul className="gallery">
+          {pictures.map((picture) => {
+            const { picture_id: id, thumb_url: url, collection_count: star } = picture;
+            return (
+              <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
+                <li key={id} data-collection={star}>
+                  <img src={url} alt={id} />
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Pagination
+          defaultCurrent={1}
+          pageSize={20}
+          total={total}
+          onChange={(page, pageSize) => pageChange(page, pageSize)}
+        />
+      </div>
     </>
   );
 }

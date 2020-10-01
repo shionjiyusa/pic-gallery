@@ -7,6 +7,7 @@ import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import AvatarSelector from './components/AvatarSelector';
 import ProfileEditor from './components/ProfileEditor';
+import Section from './components/Section';
 import getUserInfo from './service';
 import './style.scss';
 
@@ -84,7 +85,7 @@ function User() {
             <AMenu.Item key="follow">关注</AMenu.Item>
             <AMenu.Item key="follower">粉丝</AMenu.Item>
           </AMenu>
-          <div>{menu}</div>
+          <Section menu={menu} />
         </section>
       </div>
       <Footer />
