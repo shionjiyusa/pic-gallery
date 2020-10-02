@@ -1,6 +1,40 @@
 @import '../../public';
 
 @media screen and (max-width: 768px) {
+  .profile {
+    margin: 0 auto 50px;
+    background-color: $theme-color-bg;
+
+    .user-info {
+      padding: 5px;
+      // 用户头像
+      img {
+        display: block;
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+        border: 1px solid $theme-color-deep;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      // 资料
+      div {
+        margin-top: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        h2,
+        div {
+          // 按钮
+          text-align: center;
+        }
+      }
+    }
+
+    section {
+      overflow: hidden;
+    }
+  }
 }
 
 @media screen and (min-width: 769px) {

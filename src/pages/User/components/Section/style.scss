@@ -15,7 +15,12 @@
 
     .collection-item {
       width: 0;
-      padding: 12.5%;
+      @media screen and (max-width: 768px) {
+        padding: 25%;
+      }
+      @media screen and (min-width: 769px) {
+        padding: 12.5%;
+      }
 
       img {
         object-fit: cover;
@@ -30,7 +35,12 @@
     }
 
     .user-item {
-      width: 33%;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+      @media screen and (min-width: 769px) {
+        width: 33%;
+      }
       padding: 10px;
       line-height: 2em;
       & > div {

@@ -11,6 +11,12 @@ function Section(props) {
   const { menu, uid } = props; // 菜单类型, 用户 id
 
   useEffect(() => {
+    // 重置分页信息
+    setPage(1);
+    setCount(0);
+  }, [menu]);
+
+  useEffect(() => {
     let uri = '';
     // 根据不同菜单获取不同数据列表
     switch (menu) {

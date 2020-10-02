@@ -27,6 +27,7 @@ function AvatarSelector(props) {
   return (
     <Modal title="选择图片" visible={visible} footer={false} onCancel={() => setVisible(false)}>
       <input type="file" name="newAvatar" onChange={(e) => setAvatar(e.target.files[0])} />
+      <br />
       <Button type="primary" onClick={() => updateAvatar()}>
         确定
       </Button>
