@@ -1,0 +1,50 @@
+.user-section {
+  text-align: center;
+  padding: 10px;
+
+  ul:first-child {
+    list-style-type: none;
+    padding: 0;
+    text-align: justify;
+    line-height: 0;
+
+    li {
+      display: inline-block;
+      position: relative;
+    }
+
+    .collection-item {
+      width: 0;
+      padding: 12.5%;
+
+      img {
+        object-fit: cover;
+        object-position: center;
+        position: absolute;
+        top: 2.5%;
+        left: 2.5%;
+        width: 95%;
+        height: 95%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .user-item {
+      width: 33%;
+      padding: 10px;
+      line-height: 2em;
+      & > div {
+        overflow: hidden;
+      }
+
+      img {
+        float: left;
+        margin-right: 10px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+  }
+}

@@ -48,7 +48,7 @@ function Homepage() {
         {pictures.map((picture) => {
           const { picture_id: id, thumb_url: url, collection_count: star } = picture;
           return (
-            <Link to={limit ? `/picture/${id}/${limit}` : `/picture/${id}`} key={id}>
+            <Link to={limit ? `/picture/${id}/limit` : `/picture/${id}`} key={id}>
               <li key={id} data-collection={star}>
                 <img src={url} alt={id} />
               </li>

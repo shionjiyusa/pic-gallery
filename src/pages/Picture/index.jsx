@@ -17,9 +17,13 @@ function Picture() {
   const login = checkLoginStatus();
 
   useEffect(() => {
-    getPicture(pid, limit).then((res) => {
-      setPic(res.data);
-    });
+    getPicture(pid, limit)
+      .then((res) => {
+        setPic(res.data);
+      })
+      .catch(() => {
+        return null;
+      });
   }, []);
 
   useEffect(() => {

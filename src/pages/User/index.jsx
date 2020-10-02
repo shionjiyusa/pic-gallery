@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import { useRequest } from 'ahooks';
 import { message, Button, Menu as AMenu } from 'antd';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import Menu from '../../components/Menu';
@@ -14,7 +13,7 @@ import './style.scss';
 function User() {
   const { uid } = useParams();
   const [user, setUser] = useState({}); // 用户资料
-  const [menu, setMenu] = useState('collection'); // 菜单状态
+  const [menu, setMenu] = useState(''); // 菜单状态
   const [avatarSelector, setAvatarSelector] = useState(false); // 头像修改 Modal
   const [profileEditor, setProfileEditor] = useState(false); // 资料修改 Modal
 
@@ -29,7 +28,7 @@ function User() {
           message.error('用户不存在');
         }
       });
-  }, []);
+  }, [uid]);
 
   // 对比是否为用户本人主页
   const loginUser = checkLoginStatus();
@@ -85,7 +84,7 @@ function User() {
             <AMenu.Item key="follow">关注</AMenu.Item>
             <AMenu.Item key="follower">粉丝</AMenu.Item>
           </AMenu>
-          <Section menu={menu} />
+          <Section menu={menu} uid={uid} />
         </section>
       </div>
       <Footer />
