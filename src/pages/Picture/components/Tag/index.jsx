@@ -48,8 +48,8 @@ function Tag(props) {
   return (
     <>
       {tags.map((tag) => (
-        <Link to={`/search/${tag.tag}`}>
-          <span key={tag.tag_id} className="tag-style" title="yusa" color="cyan">
+        <Link key={tag.tag_id} to={`/search/${tag.tag}`}>
+          <span className="tag-style" title="yusa" color="cyan">
             {`# ${tag.tag}`}
           </span>
         </Link>

@@ -8,7 +8,7 @@ import './images/iconfont/iconfont.scss';
 const App = () => (
   <HashRouter>
     <Switch>
-      <Suspense fallback={<div>loading</div>}>
+      <Suspense fallback={<div style={{ margin: '20px', textAlign: 'center' }}>loading...</div>}>
         {router.map((each) => (
           <Route path={each.path} component={each.component} exact key={each.path} />
         ))}

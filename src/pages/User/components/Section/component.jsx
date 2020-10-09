@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Pagination } from 'antd';
+import { Pagination, Empty } from 'antd';
 import './style.scss';
 
 function SectionView(props) {
   const { err, dataList, count, currentPage, pageChange } = props;
 
   if (err) {
-    return <div>{err.message}</div>;
+    return <Empty description="加载错误" />;
   }
   if (count === 0) {
-    return <div>无</div>;
+    return <Empty description="暂无数据" />;
   }
 
   return (

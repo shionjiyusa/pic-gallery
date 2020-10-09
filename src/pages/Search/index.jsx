@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Input } from 'antd';
-import Menu from '../Menu';
-import Footer from '../Footer';
-import Gallery from '../Gallery';
+import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
+import Gallery from '../../components/Gallery';
 import './style.scss';
 
 function Search() {
@@ -18,7 +18,6 @@ function Search() {
       return;
     }
     setTarget(`/api/tags/${keyword || k}`);
-    console.log(target);
   }, [keyword]);
 
   return (
@@ -32,7 +31,7 @@ function Search() {
             onSearch={(value) => setKeyword(value)}
           />
         </div>
-        {target && <Gallery target={target} />}
+        {target && <Gallery target={target} showNav={false} />}
       </div>
       <Footer />
     </>

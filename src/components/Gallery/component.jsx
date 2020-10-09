@@ -1,15 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Pagination, message } from 'antd';
+import { Pagination, Space, Spin, Empty } from 'antd';
 import './style.scss';
 
 function GalleryView(props) {
-  const { list, total, limit, pageChange, error } = props;
+  const { list, total, limit, currentPage = 1, pageChange, loading, error } = props;
+  if (loading) {
+    return (
+      <Space size="large">
+        <Spin size="large" />
+      </Space>
+    );
+  }
   if (error) {
-    message.error('加载失败');
+    return <Empty description="加载失败" />;
   }
   if (total === 0) {
-    return <div>无数据</div>;
+    return <Empty description="无数据" />;
   }
 
   return (
@@ -27,7 +34,7 @@ function GalleryView(props) {
         })}
       </ul>
       <Pagination
-        defaultCurrent={1}
+        defaultCurrent={currentPage}
         pageSize={20}
         total={total}
         onChange={(page, pageSize) => pageChange(page, pageSize)}

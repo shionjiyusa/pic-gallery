@@ -9,7 +9,7 @@ const Register = lazy(() =>
   import(/* webpackChunkName: "register" */ './components/Menu/Register')
 );
 const Upload = lazy(() => import(/* webpackChunkName: "upload" */ './components/Upload'));
-const Search = lazy(() => import(/* webpackChunkName: "search" */ './components/Search'));
+const Search = lazy(() => import(/* webpackChunkName: "search" */ './pages/Search'));
 
 const router = [
   {
