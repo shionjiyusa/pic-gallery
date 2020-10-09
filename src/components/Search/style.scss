@@ -1,0 +1,15 @@
+@import '../../public';
+
+.search {
+  margin: 0px auto 50px;
+  padding: 5px;
+  max-width: $window-width;
+  min-height: 50vh;
+  text-align: center;
+  background-color: $theme-color-bg;
+
+  .search-bar {
+    margin: 20px auto;
+    max-width: 800px;
+  }
+}

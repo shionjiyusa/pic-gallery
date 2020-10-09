@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Modal, Input, message } from 'antd';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import { getTags, postTag } from '../../service';
@@ -47,9 +48,11 @@ function Tag(props) {
   return (
     <>
       {tags.map((tag) => (
-        <span key={tag.tag_id} className="tag-style" title="yusa" color="cyan">
-          {`# ${tag.tag}`}
-        </span>
+        <Link to={`/search/${tag.tag}`}>
+          <span key={tag.tag_id} className="tag-style" title="yusa" color="cyan">
+            {`# ${tag.tag}`}
+          </span>
+        </Link>
       ))}
       <span>
         <Button disabled={login} onClick={() => setTagModalVisible(true)}>

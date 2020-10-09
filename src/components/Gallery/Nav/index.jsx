@@ -43,8 +43,9 @@ function Nav(props) {
       >
         Limit 模式
       </Switch>
-      {/* TODO: 搜索功能 */}
-      <Button>搜索</Button>
+      <Link to="/search">
+        <Button>搜索</Button>
+      </Link>
       {login && (
         <Link to="/upload">
           <Button type="primary">上传</Button>

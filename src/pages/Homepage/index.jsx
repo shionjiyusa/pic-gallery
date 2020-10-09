@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Audio from '../../components/Audio';
-import Gallery from './components/Gallery';
+import Gallery from '../../components/Gallery';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import './style.scss';
@@ -12,7 +12,7 @@ function Homepage() {
       <Menu />
       <div className="homepage">
         <Audio />
-        <Gallery />
+        <Gallery target="/api/pictures" />
       </div>
       <Footer />
     </>

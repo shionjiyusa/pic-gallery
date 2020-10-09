@@ -17,6 +17,10 @@ function Picture() {
   const login = checkLoginStatus();
 
   useEffect(() => {
+    // 验证访问权限
+    if (!login && limit) {
+      return;
+    }
     getPicture(pid, limit)
       .then((res) => {
         setPic(res.data);

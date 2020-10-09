@@ -28,8 +28,8 @@ css-icon {
   vertical-align: middle;
   position: relative;
 }
-css-icon::before,
-css-icon::after {
+css-icon:before,
+css-icon:after {
   content: '';
   box-sizing: inherit;
   position: absolute;

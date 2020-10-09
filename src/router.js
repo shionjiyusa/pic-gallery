@@ -9,6 +9,7 @@ const Register = lazy(() =>
   import(/* webpackChunkName: "register" */ './components/Menu/Register')
 );
 const Upload = lazy(() => import(/* webpackChunkName: "upload" */ './components/Upload'));
+const Search = lazy(() => import(/* webpackChunkName: "search" */ './components/Search'));
 
 const router = [
   {
@@ -38,6 +39,10 @@ const router = [
   {
     path: '/upload',
     component: Upload,
+  },
+  {
+    path: '/search/:k?',
+    component: Search,
   },
 ];
 
