@@ -3,10 +3,10 @@
     [
       "@babel/preset-env",
       {
+        "targets": {
+          "ie": "11"
+        },
         "useBuiltIns": "usage"
-        // "targets": {
-        //   "ie": "8"
-        // }
       }
     ],
     "@babel/preset-react"

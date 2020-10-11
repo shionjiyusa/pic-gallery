@@ -2,24 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { message, Button, Menu as AMenu } from 'antd';
 import checkLoginStatus from 'utils/checkLoginStatus';
+import myAxios from 'utils/myAxios';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import AvatarSelector from './components/AvatarSelector';
 import ProfileEditor from './components/ProfileEditor';
 import Section from './components/Section';
-import getUserInfo from './service';
 import './style.scss';
 
 function User() {
+  // 对比是否为用户本人主页
   const { uid } = useParams();
+  const loginUser = checkLoginStatus();
+  let isOwner = false;
+  if (loginUser.uid === uid * 1) {
+    isOwner = true;
+  }
+
   const [user, setUser] = useState({}); // 用户资料
   const [menu, setMenu] = useState(''); // 菜单状态
   const [avatarSelector, setAvatarSelector] = useState(false); // 头像修改 Modal
   const [profileEditor, setProfileEditor] = useState(false); // 资料修改 Modal
+  const [followState, setFollowState] = useState(false); // 是否已关注
 
   useEffect(() => {
     // 获取用户资料
-    getUserInfo(uid)
+    myAxios(`/api/users/${uid}`)
       .then((res) => {
         setUser(res.data);
       })
@@ -28,14 +36,37 @@ function User() {
           message.error('用户不存在');
         }
       });
+    // 查询是否已关注用户
+    if (loginUser) {
+      myAxios(`/api/users/following/${loginUser.uid}`)
+        .then(() => {
+          setFollowState(true);
+        })
+        .catch(() => {});
+    }
   }, [uid]);
 
-  // 对比是否为用户本人主页
-  const loginUser = checkLoginStatus();
-  let isOwner = false;
-  if (loginUser.uid === uid * 1) {
-    isOwner = true;
-  }
+  const follow = () => {
+    myAxios
+      .put(`/api/users/following/${uid}`)
+      .then(() => {
+        setFollowState(true);
+      })
+      .catch(() => {
+        message.error('关注失败');
+      });
+  };
+
+  const unfollow = () => {
+    myAxios
+      .delete(`/api/users/following/${uid}`)
+      .then(() => {
+        setFollowState(false);
+      })
+      .catch(() => {
+        message.error('取消关注失败');
+      });
+  };
 
   const { email, avatar_url: avatar, name, headline, gender, age } = user;
 
@@ -62,9 +93,16 @@ function User() {
                 <Button onClick={() => setProfileEditor(true)}>修改资料</Button>
               </div>
             )}
-            {loginUser && !isOwner && (
+            {loginUser && !isOwner && !followState && (
               <div>
-                <Button type="primary">关注</Button>
+                <Button type="primary" onClick={follow}>
+                  关注
+                </Button>
+              </div>
+            )}
+            {loginUser && !isOwner && followState && (
+              <div>
+                <Button onClick={unfollow}>取消关注</Button>
               </div>
             )}
             <AvatarSelector visible={avatarSelector} setVisible={setAvatarSelector} />
@@ -84,7 +122,7 @@ function User() {
             <AMenu.Item key="follow">关注</AMenu.Item>
             <AMenu.Item key="follower">粉丝</AMenu.Item>
           </AMenu>
-          <Section menu={menu} uid={uid} />
+          <Section menu={menu} uid={uid} setFollowState={setFollowState} />
         </section>
       </div>
       <Footer />
