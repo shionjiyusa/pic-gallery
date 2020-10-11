@@ -36,6 +36,10 @@ function postComment(pid, comment) {
   return myAxios.post(`/api/comments/picture/${pid}`, { comment });
 }
 
+function deletePic(pid) {
+  return myAxios.delete(`/api/pictures/${pid}`);
+}
+
 export {
   getPicture,
   getCollectionState,
@@ -46,4 +50,5 @@ export {
   postTag,
   getComments,
   postComment,
+  deletePic,
 };

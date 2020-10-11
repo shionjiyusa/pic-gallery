@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Input, Button, message } from 'antd';
+import { Link } from 'react-router-dom';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import { getComments, postComment } from '../../service';
 import './style.scss';
@@ -48,8 +49,14 @@ function Comment(props) {
           <div className="comment-box" key={comment.comment_id}>
             <span className="comment-counter comment-time">{`${time[0]} ${time[1]}`}</span>
             <div className="comment-user">
-              <span className="user_avatar">{comment.user.avatar_url}</span>
-              {comment.user.name}
+              <Link to={`/user/${comment.user.uid}`}>
+                <img
+                  className="user-avatar"
+                  src={comment.user.avatar_url}
+                  alt={comment.user.email}
+                />
+                {comment.user.name}
+              </Link>
               {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
               <span>：{comment.comment}</span>
             </div>

@@ -3,7 +3,14 @@
 }
 
 .comment-counter:before {
-  content: counter(comments, upper-roman);
+  content: counter(comments);
   counter-increment: comments 1;
   margin-right: 5px;
+}
+
+.user-avatar {
+  width: 3em;
+  height: 3em;
+  margin-right: 0.5em;
+  vertical-align: top;
 }

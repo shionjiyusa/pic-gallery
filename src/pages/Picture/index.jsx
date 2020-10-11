@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Button, Popconfirm } from 'antd';
 import checkLoginStatus from 'utils/checkLoginStatus';
 import Menu from '../../components/Menu';
 import Footer from '../../components/Footer';
 import Score from './components/Score';
 import Tag from './components/Tag';
 import Comment from './components/Comment';
-import { getPicture, getCollectionState, collect, unCollect } from './service';
+import { getPicture, getCollectionState, collect, unCollect, deletePic } from './service';
 import './style.scss';
 
 function Picture() {
+  // 根据登录状态改变内容
   const { pid, limit = false } = useParams(); // 获取路由 params
+  const login = checkLoginStatus();
+
+  const [isOwner, setIsOwner] = useState(false);
   const [pic, setPic] = useState({});
   const [collectionState, setCollectionState] = useState(false);
-  // 根据登录状态改变内容
-  const login = checkLoginStatus();
 
   useEffect(() => {
     // 验证访问权限
@@ -24,6 +27,9 @@ function Picture() {
     getPicture(pid, limit)
       .then((res) => {
         setPic(res.data);
+        if (login.uid === res.data.created_by) {
+          setIsOwner(true);
+        }
       })
       .catch(() => {
         return null;
@@ -55,6 +61,14 @@ function Picture() {
       unCollect(pid);
       setCollectionState(false);
     }
+  };
+
+  const deletePicture = () => {
+    deletePic(pid)
+      .then(() => {
+        window.location.href = '/';
+      })
+      .catch(() => {});
   };
 
   // 判断对象是否为空，解决空对象属性引用报错
@@ -118,6 +132,11 @@ function Picture() {
             <Comment pid={pid} />
           </div>
         </div>
+        {login && isOwner && (
+          <Popconfirm title="确认删除吗？" onConfirm={deletePicture}>
+            <Button type="danger">删除图片</Button>
+          </Popconfirm>
+        )}
       </div>
       <Footer />
     </>
