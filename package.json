@@ -53,7 +53,7 @@
   "dependencies": {
     "ahooks": "^2.6.1",
     "antd": "^4.5.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "react": "^16.13.1",
     "react-aplayer": "^1.0.0",
     "react-cookies": "^0.1.1",
